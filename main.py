@@ -3,6 +3,4 @@ from management import get_product_by_id, get_products_by_type, add_product,menu
 
 
 if __name__ == "__main__":
-    print(menu_report())
-   
-    ...
+  ...

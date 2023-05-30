@@ -2,25 +2,25 @@ from menu import products
 
 
 def get_product_by_id(id):
-    try:
-        for dicionario in products:
-            if id in dicionario.values():
-                return dicionario
-        return {}
-    except TypeError:
-        print("product id must be an int")
+    if type(id) != int:
+        raise TypeError("product id must be an int")
+
+    for dicionario in products:
+        if dicionario.get("_id") == id:
+            return dicionario
+    return {}
 
 
-def get_products_by_type(type):
-    try:
-        response = []
 
-        for dicionario in products:
-            if type in dicionario.values():
-                response.append(dicionario)
-        return response
-    except TypeError:
-        print("product type must be a str")
+def get_products_by_type(type_Product):
+    if type(type_Product) != str:
+        raise TypeError("product type must be a str")
+    response = []
+
+    for dicionario in products:
+        if type_Product in dicionario.values():
+            response.append(dicionario)
+    return response
 
 
 def add_product(products, **menu):
@@ -48,7 +48,7 @@ def menu_report():
         else:
             type_product[product['type']] += 1
 
-    average_price =round(average_price / product_count,2)
+    average_price = round(average_price / product_count, 2)
 
     most_common_type = ''
     cont = 0
