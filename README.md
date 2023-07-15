@@ -1,72 +1,64 @@
-<h1> M5 - Kiosque </h1>
+# API de Gerenciamento de Loja de Comidas
 
-<h2> Como rodar os testes localmente </h2>
+Esta é uma API desenvolvida para facilitar o gerenciamento de uma loja de comidas. Ela oferece uma série de funcionalidades para verificar a existência de produtos no menu, listar alimentos por categoria, calcular o gasto total de uma mesa e muito mais.
 
-<h3> Preparação do ambiente <h3>
+## Requisitos
 
-<p>Instalar o pacote <strong>pytest-testdox</strong>:</p>
+A aplicação deve atender aos seguintes requisitos:
 
-```shell
-pip install pytest-testdox
-```
+- Verificar a existência de um produto no menu.
+- Listar alimentos de uma categoria específica.
+- Calcular o gasto total de uma mesa.
+- Adicionar um novo produto ao menu.
+- Remover um produto do menu.
+- Atualizar informações de um produto no menu.
+- Registrar um pedido de um cliente.
+- Listar todos os pedidos realizados.
+- Calcular o total de vendas de um período específico.
+- Gerar relatórios de vendas.
 
-<p>Rodar os testes referentes a cada tarefa isoladamente:</p>
+## Instalação
 
-```shell
-pytest --testdox -vvs caminho/para/o/modulo/da/tarefa
-```
+Siga as instruções abaixo para configurar e executar a API:
 
-Exemplo:
-<ul>
-<li>Tarefa 1</li>
+1. Certifique-se de ter o Python 3 instalado em seu ambiente.
+2. Clone o repositório do projeto: `git clone https://github.com/seu-usuario/api-loja-de-comidas.git`
+3. Navegue até o diretório do projeto: `cd api-loja-de-comidas`
+4. Instale as dependências usando o gerenciador de pacotes do Python: `pip install -r requirements.txt`
+5. Execute o arquivo `main.py` para iniciar a aplicação.
 
-```shell
-pytest --testdox -vvs tests/tarefas/tarefa_1/
-```
+## Uso
 
-<li>Tarefa 2</li>
+A API é acessada através de endpoints HTTP e retorna respostas em formato JSON. Abaixo estão listados os endpoints disponíveis:
 
-```shell
-pytest --testdox -vvs tests/tarefas/tarefa_2/
-```
-<li>Tarefa 3</li>
+- **GET /menu/{produto}**: Verifica a existência de um produto no menu. Substitua `{produto}` pelo nome do produto desejado. Retorna um objeto JSON contendo informações sobre o produto, caso ele exista, ou uma mensagem de erro, caso contrário.
 
-```shell
-pytest --testdox -vvs tests/tarefas/tarefa_3/
-```
+- **GET /menu/categoria/{categoria}**: Lista alimentos de uma categoria específica. Substitua `{categoria}` pela categoria desejada. Retorna um objeto JSON contendo uma lista de alimentos da categoria informada.
 
-</ul>
+- **GET /mesa/{mesa}/gasto**: Calcula o gasto total de uma mesa. Substitua `{mesa}` pelo número da mesa desejada. Retorna um objeto JSON contendo o valor total gasto na mesa.
 
-### **Importante!!**
-Caso esteja utilizando Windows e, ao rodar o comando `pytest --testdox` aparecer um erro de **cmdlet**, troque o inicio do comando pelo seguinte:
+- **POST /menu**: Adiciona um novo produto ao menu. O corpo da requisição deve conter as informações do novo produto em formato JSON. Retorna um objeto JSON contendo as informações do produto adicionado.
 
-```shell
-python -m pytest --testdox
-```
+- **DELETE /menu/{produto}**: Remove um produto do menu. Substitua `{produto}` pelo nome do produto a ser removido. Retorna uma mensagem de sucesso ou erro.
 
-<hr>
-<p>Você também pode rodar cada método de teste isoladamente:</p>
+- **PUT /menu/{produto}**: Atualiza as informações de um produto no menu. Substitua `{produto}` pelo nome do produto a ser atualizado. O corpo da requisição deve conter as novas informações do produto em formato JSON. Retorna um objeto JSON contendo as informações do produto atualizado.
 
-```shell
-pytest --testdox -vvs caminho/para/o/arquivo/de/teste::NomeDaClasse::nome_do_metodo_de_teste
-```
+- **POST /pedido**: Registra um novo pedido de um cliente. O corpo da requisição deve conter as informações do pedido em formato JSON. Retorna um objeto JSON contendo as informações do pedido registrado.
 
-<p>Exemplo: executar somente "test_can_get_product_by_id".</p>
+- **GET /pedidos**: Lista todos os pedidos realizados. Retorna um objeto JSON contendo uma lista de todos os pedidos.
 
-```shell
-pytest --testdox -vvs tests/tarefas/tarefa_1/test_get_product_by_id.py::TestGetProductById::test_can_get_product_by_id
-```
-<hr>
-<p>Os testes referentes as funcionalidades extras não são executados por padrão caso você não especifique o caminho até eles. Então caso você queira os executar, rode:</p>
+- **GET /vendas/{data_inicial}/{data_final}**: Calcula o total de vendas em um período específico. Substitua `{data_inicial}` e `{data_final}` pelas datas inicial e final do período desejado, respectivamente, no formato "AAAA-MM-DD". Retorna um objeto JSON contendo o valor total de vendas no período.
 
-```shell
-pytest --testdox -vvs tests/tarefas/tarefa_3/extra_add_product.py
-```
+- **GET /relatorios/vendas**: Gera relatórios de vendas. Retorna um arquivo PDF contendo os relatórios de vendas.
 
-## Rodando todos os testes
+## Contribuição
 
-Para rodar todos os testes da aplicação de uma vez, execute o seguinte comando no terminal (estando na raiz do projeto)
+Se desejar contribuir para este projeto, siga as etapas abaixo:
 
-```shell
-pytest --testdox
-```
+1. Faça um fork do repositório.
+2. Crie uma nova branch com sua contribuição: `git checkout -b minha-contribuicao`
+3. Faça as alterações desejadas e faça commit das mesmas: `git commit -am 'Minha contribuição'`
+4. Envie suas alterações para o seu fork: `git push origin minha-contribuicao`
+5. Abra um pull request no repositório original, descrevendo suas alterações.
+
+
